@@ -1,0 +1,33 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container" style="display:flex; align-items:center; justify-content:center; min-height:80vh; background:linear-gradient(135deg, #d4e7f9, #f9e6f2);">
+    <div style="width:400px; background:white; padding:35px; border-radius:18px; box-shadow:0px 6px 25px rgba(0,0,0,0.08); text-align:center;">
+        <img src="https://cdn-icons-png.flaticon.com/512/190/190411.png" alt="Leaderboard Icon" style="width:100px; margin-bottom:15px;">
+        <h2 style="margin-bottom:20px; color:#333; font-weight:600;">Leaderboard 🏆</h2>
+
+        {% if scores %}
+        <table style="width:100%; border-collapse: collapse; margin-top:15px;">
+            <tr>
+                <th style="text-align:left; padding:8px;">Rank</th>
+                <th style="text-align:left; padding:8px;">Username</th>
+                <th style="text-align:left; padding:8px;">Score</th>
+                <th style="text-align:left; padding:8px;">Date</th>
+            </tr>
+            {% for score in scores %}
+            <tr style="background:#f9f9f9; border-radius:8px;">
+                <td style="padding:8px;">{{ forloop.counter }}</td>
+                <td style="padding:8px;">{{ score.user.username }}</td>
+                <td style="padding:8px;">{{ score.score }}</td>
+                <td style="padding:8px;">{{ score.date_taken|date:"d M Y H:i" }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% else %}
+        <p style="margin-top:15px; color:#555;">No scores yet. Be the first to take the quiz!</p>
+        {% endif %}
+
+        <a href="{% url 'home' %}" style="text-decoration:none; display:inline-block; margin-top:20px; background:#6c63ff; color:white; padding:10px 20px; border-radius:10px; font-weight:600;">Back to Home</a>
+    </div>
+</div>
+{% endblock %}

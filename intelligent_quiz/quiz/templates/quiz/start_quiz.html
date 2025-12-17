@@ -1,0 +1,43 @@
+<!-- quiz/templates/quiz/start_quiz.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Start Quiz</title>
+</head>
+<body style="display:flex; justify-content:center; align-items:center; height:100vh; background:#f4f4f4;">
+    <div style="width:500px; background:white; padding:40px; border-radius:20px; box-shadow:0px 6px 25px rgba(0,0,0,0.08); text-align:center;">
+        
+        {% if question %}
+            <h2 style="margin-bottom:20px; color:#333; font-weight:600;">Question {{ current }} of {{ total }}</h2>
+
+            <form method="POST" style="display:flex; flex-direction:column; gap:12px;">
+                {% csrf_token %}
+                <div class="question-box" style="font-weight:600; font-size:18px; color:#555;">
+                    {{ question.question_text }}
+                </div>
+
+                {% for option in options %}
+                    <label style="text-align:left; font-size:16px; color:#444;">
+                        <input type="radio" name="answer" value="{{ option }}" required style="margin-right:10px;"> {{ option }}
+                    </label>
+                {% endfor %}
+
+                <button type="submit" style="padding:12px; border-radius:10px; border:none; background:#6c63ff; color:white; font-size:16px; font-weight:600; cursor:pointer; transition:0.3s;">
+                    Next
+                </button>
+            </form>
+
+        {% else %}
+            <h2 style="color:#333; font-weight:600;">
+                Quiz Completed!
+            </h2>
+            <p style="font-size:16px; color:#555;">
+                Your Score: {{ score }} / {{ total }}
+            </p>
+            <a href="{% url 'home' %}" style="padding:10px 20px; background:#6c63ff; color:white; border-radius:8px; text-decoration:none;">Go to Home</a>
+        {% endif %}
+
+    </div>
+</body>
+</html>
