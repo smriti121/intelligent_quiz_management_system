@@ -2,7 +2,6 @@
 
 ![Python](https://img.shields.io/badge/Python-3.12-blue)
 ![Django](https://img.shields.io/badge/Django-5.x-green)
-![Status](https://img.shields.io/badge/Status-Completed-success)
 ![License](https://img.shields.io/badge/License-Educational-orange)
 
 The **Intelligent Quiz Management System** is a full-stack web application built using **Django** that enables users to securely register, attempt quizzes, track scores, and view rankings on a leaderboard.
